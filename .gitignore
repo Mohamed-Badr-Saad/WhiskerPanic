@@ -1,0 +1,5 @@
+# Godot 4 files that should not be backed up
+.godot/
+/android/
+*.tmp
+build/

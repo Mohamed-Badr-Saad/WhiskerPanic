@@ -1,0 +1,149 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1_hud"]
+[ext_resource type="Texture2D" path="res://assets/sprites/coin.png" id="2_coin"]
+[ext_resource type="Script" path="res://scenes/ui/virtual_joystick.gd" id="3_joy"]
+
+[sub_resource type="StyleBoxFlat" id="boss_fill"]
+bg_color = Color(0.9, 0.25, 0.25, 1)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="VirtualJoystick" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("3_joy")
+
+[node name="XPBar" type="ProgressBar" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 6.0
+grow_horizontal = 2
+mouse_filter = 2
+max_value = 5.0
+show_percentage = false
+
+[node name="LevelLabel" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 6.0
+offset_right = 64.0
+offset_bottom = 23.0
+text = "Lv 1"
+
+[node name="Hearts" type="HBoxContainer" parent="."]
+offset_left = 5.0
+offset_top = 23.0
+offset_right = 125.0
+offset_bottom = 33.0
+mouse_filter = 2
+theme_override_constants/separation = 1
+
+[node name="TimeLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -40.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 28.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 16
+text = "00:00"
+horizontal_alignment = 1
+
+[node name="TopRight" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -130.0
+offset_top = 8.0
+offset_right = -30.0
+offset_bottom = 25.0
+grow_horizontal = 0
+mouse_filter = 2
+alignment = 2
+
+[node name="CoinIcon" type="TextureRect" parent="TopRight"]
+layout_mode = 2
+texture = ExtResource("2_coin")
+stretch_mode = 5
+
+[node name="CoinLabel" type="Label" parent="TopRight"]
+layout_mode = 2
+text = "0"
+
+[node name="KillLabel" type="Label" parent="TopRight"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.85, 1)
+text = "x0"
+
+[node name="PauseButton" type="Button" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -26.0
+offset_top = 8.0
+offset_right = -6.0
+offset_bottom = 26.0
+grow_horizontal = 0
+focus_mode = 0
+text = "II"
+
+[node name="BossBar" type="ProgressBar" parent="."]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -20.0
+offset_right = 120.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/fill = SubResource("boss_fill")
+max_value = 300.0
+value = 300.0
+show_percentage = false
+
+[node name="BossLabel" type="Label" parent="BossBar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -80.0
+offset_top = -16.0
+offset_right = 80.0
+offset_bottom = 0.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 10
+text = "MEGA-VAC 3000"
+horizontal_alignment = 1
+
+[node name="Announcement" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 70.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+pivot_offset = Vector2(200, 15)
+theme_override_colors/font_color = Color(1, 0.85, 0.3, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 22
+text = "Announcement"
+horizontal_alignment = 1

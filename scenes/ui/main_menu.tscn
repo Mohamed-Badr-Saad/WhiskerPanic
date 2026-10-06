@@ -1,0 +1,156 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/floor.png" id="2_floor"]
+[ext_resource type="Texture2D" path="res://assets/sprites/robo_vac.png" id="3_vac"]
+[ext_resource type="PackedScene" path="res://scenes/ui/settings_panel.tscn" id="4_settings"]
+
+[sub_resource type="AtlasTexture" id="vac_frame"]
+atlas = ExtResource("3_vac")
+region = Rect2(0, 0, 16, 16)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_floor")
+stretch_mode = 1
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.1, 0.06, 0.03, 0.45)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.62, 0.2, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 40
+text = "WHISKER PANIC"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "The vacuums have turned on the cat."
+horizontal_alignment = 1
+
+[node name="Art" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="CatPreview" type="TextureRect" parent="Center/VBox/Art"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VacPreview" type="TextureRect" parent="Center/VBox/Art"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = SubResource("vac_frame")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="Buttons" type="VBoxContainer" parent="Center/VBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
+
+[node name="PlayButton" type="Button" parent="Center/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Play"
+
+[node name="ShopButton" type="Button" parent="Center/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Cat Tree (upgrades)"
+
+[node name="SettingsButton" type="Button" parent="Center/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="Center/VBox/Buttons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="CoinsLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.84, 0.35, 1)
+text = "Coins: 0"
+horizontal_alignment = 1
+
+[node name="BestLabel" type="Label" parent="Center/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Best time: 00:00"
+horizontal_alignment = 1
+
+[node name="SettingsPopup" type="CenterContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="PanelContainer" parent="SettingsPopup"]
+layout_mode = 2
+
+[node name="VBox" type="VBoxContainer" parent="SettingsPopup/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="SettingsPopup/Panel/VBox"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Settings"
+horizontal_alignment = 1
+
+[node name="SettingsPanel" parent="SettingsPopup/Panel/VBox" instance=ExtResource("4_settings")]
+layout_mode = 2
+
+[node name="SettingsBack" type="Button" parent="SettingsPopup/Panel/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Back"

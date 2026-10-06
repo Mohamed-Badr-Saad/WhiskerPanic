@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=3]
+
+[ext_resource type="Script" path="res://scenes/main/game.gd" id="1_game"]
+[ext_resource type="Script" path="res://scenes/main/floor.gd" id="2_floor"]
+[ext_resource type="Texture2D" path="res://assets/sprites/floor.png" id="3_floor_tex"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="4_player"]
+[ext_resource type="Script" path="res://scenes/main/wave_spawner.gd" id="5_spawner"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/level_up_menu.tscn" id="7_levelup"]
+[ext_resource type="PackedScene" path="res://scenes/ui/pause_menu.tscn" id="8_pause"]
+[ext_resource type="PackedScene" path="res://scenes/ui/game_over.tscn" id="9_gameover"]
+
+[node name="Game" type="Node2D" groups=["game"]]
+y_sort_enabled = true
+script = ExtResource("1_game")
+
+[node name="Floor" type="Sprite2D" parent="."]
+z_index = -10
+texture_repeat = 2
+texture = ExtResource("3_floor_tex")
+region_enabled = true
+region_rect = Rect2(0, 0, 864, 512)
+script = ExtResource("2_floor")
+
+[node name="Pickups" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Enemies" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("4_player")]
+
+[node name="Projectiles" type="Node2D" parent="." groups=["projectiles"]]
+z_index = 5
+
+[node name="WaveSpawner" type="Node" parent="."]
+script = ExtResource("5_spawner")
+
+[node name="HUD" parent="." instance=ExtResource("6_hud")]
+
+[node name="LevelUpMenu" parent="." instance=ExtResource("7_levelup")]
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_pause")]
+
+[node name="GameOverScreen" parent="." instance=ExtResource("9_gameover")]

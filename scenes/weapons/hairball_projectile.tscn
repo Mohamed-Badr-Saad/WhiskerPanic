@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scenes/weapons/hit_box.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/sprites/hairball.png" id="2_tex"]
+
+[sub_resource type="CircleShape2D" id="shape"]
+radius = 4.0
+
+[node name="HairballProjectile" type="Area2D"]
+z_index = 5
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("1_script")
+lifetime = 1.4
+pierce = 1
+spin = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tex")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("shape")
