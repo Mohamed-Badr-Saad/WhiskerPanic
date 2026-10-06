@@ -21,8 +21,8 @@ func fire() -> bool:
 		var beam: HitBox = BEAM.instantiate()
 		beam.damage = get_damage(DAMAGE)
 		beam.rotation = player.global_position.direction_to(target.global_position).angle()
+		beam.position = player.global_position  # before add_child (Projectiles sits at 0,0)
 		projectile_parent().add_child(beam)
-		beam.global_position = player.global_position
 		fired = true
 	if fired:
 		Audio.play("laser")

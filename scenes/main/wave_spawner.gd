@@ -84,8 +84,10 @@ func _spawn(scene: PackedScene, pos: Vector2) -> Enemy:
 	var enemy: Enemy = scene.instantiate()
 	enemy.max_hp *= hp_multiplier(game.elapsed)  # before add_child: _ready() copies it into hp
 	game.register_enemy(enemy)
+	# Set the position BEFORE add_child (Enemies sits at 0,0 so local = world).
+	# Otherwise the enemy exists for a moment at (0, 0), where the cat starts, and hurts her.
+	enemy.position = pos
 	game.enemies.add_child(enemy)
-	enemy.global_position = pos
 	return enemy
 
 

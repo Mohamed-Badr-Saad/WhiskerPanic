@@ -27,7 +27,7 @@ func fire() -> bool:
 		ball.damage = get_damage(DAMAGE)
 		ball.pierce = int(stat(PIERCE))
 		ball.velocity = dir * SPEED
+		ball.position = player.global_position  # before add_child (Projectiles sits at 0,0)
 		projectile_parent().add_child(ball)
-		ball.global_position = player.global_position
 	Audio.play("shoot")
 	return true

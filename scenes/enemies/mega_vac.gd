@@ -38,5 +38,5 @@ func _spawn_minions() -> void:
 		var minion: Enemy = ROBO_VAC.instantiate()
 		minion.max_hp *= 2.0
 		game.register_enemy(minion)
+		minion.position = global_position + Vector2.RIGHT.rotated(TAU * i / 3.0 + randf()) * 34.0
 		game.enemies.add_child(minion)
-		minion.global_position = global_position + Vector2.RIGHT.rotated(TAU * i / 3.0 + randf()) * 34.0
